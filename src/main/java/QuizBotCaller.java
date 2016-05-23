@@ -39,6 +39,7 @@ public class QuizBotCaller implements DrawersMessageListener {
 
     private void startBot() {
         mqttProviderManager.addMessageListener(new QuizMessageListener(bot, clientId));
+        mqttProviderManager.addChatStateListener(new QuizChatStateListener(bot, clientId));
         bot.start();
         try {
             bot.getExecutorService().awaitTermination(100000000L, TimeUnit.SECONDS);
